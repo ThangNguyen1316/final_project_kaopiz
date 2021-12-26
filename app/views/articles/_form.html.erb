@@ -1,0 +1,29 @@
+<div class="container" >
+    <ul>
+    <% article.errors.full_messages.each do |message| %>
+        <li>
+          <%= message %>
+        </li>
+    <% end %>
+    </ul>
+    <%= form_with model: article, local: true do |f| %>
+        <div>
+            <%= f.label :eyecatch, 'Thumbnail' %>
+        </div>
+        <div>
+            <%= f.file_field :eyecatch %>
+        </div>
+        <div>
+            <%= f.text_field :title, class: 'text' %>
+        </div>
+        <div>
+            <%= f.label :content, 'Content'%>
+        </div>
+        <div>
+            <%= f.rich_text_area :content %>
+        </div>
+        <div>
+            <%= f.submit 'Submit', class: 'btn-primary' %>
+        </div>
+    <% end %>
+</div>

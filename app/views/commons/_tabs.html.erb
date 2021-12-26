@@ -1,0 +1,13 @@
+<div class="tabs">
+    <div class= "<%= "tabs_item #{add_active_class(root_path)}" %>">
+        <%= link_to 'New articles', root_path %>
+    </div>
+    <div class="<%= "tabs_item #{add_active_class(mostlike_path)}" %>">
+        <%= link_to 'Most likes articles', mostlike_path %>
+    </div>
+    <% if user_signed_in? %>
+    <div class="<%= "tabs_item #{add_active_class(timeline_path)}" %>">
+        <%= link_to 'Articles from followers', timeline_path %>
+    </div>
+    <% end %>
+</div>

@@ -1,0 +1,7 @@
+<div class="container">
+    <h2>Favorite articles</h2>
+    <% @articles.each do |article| %>
+        <%= render 'commons/article', article: article %>
+    <% end %>
+</div>
+    

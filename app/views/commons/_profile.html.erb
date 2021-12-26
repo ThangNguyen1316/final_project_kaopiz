@@ -1,0 +1,37 @@
+<div class="container profilePage" >
+    <div class="profilePage_user">
+        <div class="profilePage_user_image">
+            <%= image_tag user.avatar_image %>
+        </div>
+        <div class="profilePage_user_basicInfo">
+            <div class="profilePage_user_name">
+                <div class="profilePage_user_displayName">
+                    <div>Username: <%= user.display_name%> </div>
+                    <div>Gender: <%= I18n.t("enum.genders.#{user.gender || "unknown"}")  %> </div>
+                    <div>Birthday: <%= user.birthday.present? ? user.birthday : "unknown"  %> </div>
+                  
+                </div>
+                <div class="profilePage_user_actionButton">
+                    <% if user == current_user %>
+                        <%= link_to 'Edit', edit_profile_path %>
+                    <% else %>
+                        <% if current_user&.has_followed?(user) %>
+                            <%= link_to 'Unfollow', account_unfollows_path(user), data: {method: 'post'} %>
+                        <% else %>
+                            <%= link_to 'Follow', account_follows_path(user), data: {method: 'post'} %>
+                        <% end %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <% if user.profile&.introduction %>
+    <div class="profilePage_user_introduction">
+        Introduction:   <%= user.profile&.introduction %>
+    </div>
+    <% end %>
+    <% user.articles.each do |article| %> 
+        <%= render 'commons/article', article: article %> 
+    <% end %>
+</div>
